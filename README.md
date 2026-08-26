@@ -43,6 +43,12 @@ only place the table name appears.
   file now uses the recipient's name instead of a hardcoded name
 - `download.php` sanitizer no longer whitelists Portuguese accented characters
 - Table name extracted into the `SUPABASE_TABLE` constant
+- The footer is now a **CTA** — `Loved it? Make another one at abcMusic`, pointing to
+  `https://abcmusic-quiz-us.netlify.app/?utm_source=link_pagina_entrega`
+  (was `Made with 💚 by abcMusic` → `abcmusic.tech`). Brightened from
+  `rgba(255,255,255,0.15)` to `0.45` with a hover state, so it reads as a call to
+  action instead of a credit line. The abcMusic logo at the top of the page still
+  points to `abcmusic.tech`.
 
 Everything else is unchanged: animated icon, wave bars, play/pause, ±10s seek,
 scrubbable progress bar.

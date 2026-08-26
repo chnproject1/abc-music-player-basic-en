@@ -216,14 +216,20 @@ $download_url = '/download.php?url=' . urlencode($raw_url) . '&filename=' . urle
     .btn-download:active { transform: scale(0.98); }
     .btn-download:disabled { opacity: 0.6; cursor: default; }
 
-    /* ── Footer ── */
+    /* ── Footer CTA ── */
     footer {
-      font-size: 11px;
-      color: rgba(255,255,255,0.15);
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
       text-align: center;
       margin-top: 8px;
     }
-    footer a { color: #34d399; text-decoration: none; opacity: 0.6; }
+    footer a {
+      color: #34d399;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    footer a:hover { color: #6ee7b7; text-decoration: underline; }
 
     audio { display: none; }
   </style>
@@ -293,7 +299,7 @@ $download_url = '/download.php?url=' . urlencode($raw_url) . '&filename=' . urle
     Download your song
   </button>
 
-  <footer>Made with 💚 by <a href="https://abcmusic.tech" target="_blank">abcMusic</a></footer>
+  <footer>Loved it? Make another one at <a href="https://abcmusic-quiz-us.netlify.app/?utm_source=link_pagina_entrega" target="_blank" rel="noopener">abcMusic</a></footer>
 
 </div>
 
