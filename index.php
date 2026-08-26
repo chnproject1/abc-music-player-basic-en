@@ -238,7 +238,7 @@ $download_url = '/download.php?url=' . urlencode($raw_url) . '&filename=' . urle
 <body>
 <div class="content">
 
-  <a class="brand" href="https://abcmusic.tech" target="_blank">abcMusic</a>
+  <a class="brand" href="https://abcmusic-quiz-us.netlify.app/?utm_source=link_pagina_entrega" target="_blank" rel="noopener">abcMusic</a>
 
   <!-- Animated icon -->
   <div class="music-icon" id="musicIcon">

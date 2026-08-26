@@ -47,8 +47,10 @@ only place the table name appears.
   `https://abcmusic-quiz-us.netlify.app/?utm_source=link_pagina_entrega`
   (was `Made with 💚 by abcMusic` → `abcmusic.tech`). Brightened from
   `rgba(255,255,255,0.15)` to `0.45` with a hover state, so it reads as a call to
-  action instead of a credit line. The abcMusic logo at the top of the page still
-  points to `abcmusic.tech`.
+  action instead of a credit line.
+- The abcMusic logo at the top of the page points to the same quiz URL. Every
+  outbound link on the delivery page now leads to the quiz — there are no links
+  back to `abcmusic.tech`.
 
 Everything else is unchanged: animated icon, wave bars, play/pause, ±10s seek,
 scrubbable progress bar.
