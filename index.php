@@ -218,10 +218,11 @@ $download_url = '/download.php?url=' . urlencode($raw_url) . '&filename=' . urle
 
     /* ── Footer CTA ── */
     footer {
-      font-size: 13px;
+      font-size: 15px;
+      line-height: 1.5;
       color: rgba(255,255,255,0.45);
       text-align: center;
-      margin-top: 8px;
+      margin-top: 12px;
     }
     footer a {
       color: #34d399;
