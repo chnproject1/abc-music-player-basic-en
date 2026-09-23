@@ -1,6 +1,6 @@
 <?php
 // ──────────────────────────────────────────
-//  abcMusic — Basic delivery player (EN)
+//  abcMusic — Reproductor de entrega básica (ES)
 //  play.abcmusic.tech/{uuid}
 // ──────────────────────────────────────────
 
@@ -9,9 +9,12 @@ $uuid = preg_replace('/[^a-f0-9\-]/i', '', $path);
 
 if (strlen($uuid) !== 36) {
     http_response_code(404);
-    die('Song not found.');
+    die('Canción no encontrada.');
 }
 
+// Funil em espanhol (link "crea otra"). Troque pela variável SITE_URL no
+// Easypanel quando o site novo estiver no ar; sem ela, cai no antigo.
+define('SITE_URL', rtrim(getenv('SITE_URL') ?: 'https://abcmusic-quiz-us.netlify.app', '/'));
 define('SUPABASE_URL',   'https://baltzukuszagxcgkfrpi.supabase.co');
 define('SUPABASE_KEY',   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJhbHR6dWt1c3phZ3hjZ2tmcnBpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczMTg4MjMsImV4cCI6MjA5Mjg5NDgyM30.gcRHTzssV3OsbObvnpnbROrrpA8Dn6zZz9j_qDJdw0s');
 define('SUPABASE_TABLE', 'presentes');
@@ -31,24 +34,24 @@ curl_close($ch);
 $rows = json_decode($resp, true);
 if (empty($rows)) {
     http_response_code(404);
-    die('Song not found.');
+    die('Canción no encontrada.');
 }
 
 $m            = $rows[0];
 $audio_url    = htmlspecialchars($m['audio_url'] ?? '');
 $raw_url      = $m['audio_url'] ?? '';
-$name         = $m['nome'] ?? $m['nome_presenteado'] ?? 'my-song';
+$name         = $m['nome'] ?? $m['nome_presenteado'] ?? 'mi-cancion';
 $download_url = '/download.php?url=' . urlencode($raw_url) . '&filename=' . urlencode($name . '.mp3');
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <meta property="og:title"       content="Your special song 🎵">
-  <meta property="og:description" content="A song made just for you by abcMusic.">
+  <meta property="og:title"       content="Tu canción especial 🎵">
+  <meta property="og:description" content="Una canción hecha solo para ti por abcMusic.">
   <meta name="theme-color"        content="#0d1a12">
-  <title>Your song — abcMusic</title>
+  <title>Tu canción — abcMusic</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -238,7 +241,7 @@ $download_url = '/download.php?url=' . urlencode($raw_url) . '&filename=' . urle
 <body>
 <div class="content">
 
-  <a class="brand" href="https://abcmusic-quiz-us.netlify.app/?utm_source=link_pagina_entrega" target="_blank" rel="noopener">abcMusic</a>
+  <a class="brand" href="<?= SITE_URL ?>/?utm_source=link_pagina_entrega" target="_blank" rel="noopener">abcMusic</a>
 
   <!-- Animated icon -->
   <div class="music-icon" id="musicIcon">
@@ -273,18 +276,18 @@ $download_url = '/download.php?url=' . urlencode($raw_url) . '&filename=' . urle
     </div>
 
     <div class="controls">
-      <button class="btn-skip" onclick="seek(-10)" aria-label="Rewind 10s">
+      <button class="btn-skip" onclick="seek(-10)" aria-label="Retroceder 10 s">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
           <path d="M11 17l-5-5 5-5"/><path d="M18 17l-5-5 5-5"/>
         </svg>
       </button>
 
-      <button class="btn-play" id="playBtn" onclick="togglePlay()" aria-label="Play/Pause">
+      <button class="btn-play" id="playBtn" onclick="togglePlay()" aria-label="Reproducir/Pausar">
         <svg id="iconPlay" width="28" height="28" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
         <svg id="iconPause" width="28" height="28" viewBox="0 0 24 24" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
       </button>
 
-      <button class="btn-skip" onclick="seek(10)" aria-label="Forward 10s">
+      <button class="btn-skip" onclick="seek(10)" aria-label="Adelantar 10 s">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
           <path d="M13 17l5-5-5-5"/><path d="M6 17l5-5-5-5"/>
         </svg>
@@ -297,10 +300,10 @@ $download_url = '/download.php?url=' . urlencode($raw_url) . '&filename=' . urle
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
     </svg>
-    Download your song
+    Descargar tu canción
   </button>
 
-  <footer>Loved it? Make another one at <a href="https://abcmusic-quiz-us.netlify.app/?utm_source=link_pagina_entrega" target="_blank" rel="noopener">abcMusic</a></footer>
+  <footer>¿Te gustó? Crea otra en <a href="<?= SITE_URL ?>/?utm_source=link_pagina_entrega" target="_blank" rel="noopener">abcMusic</a></footer>
 
 </div>
 
@@ -364,7 +367,7 @@ $download_url = '/download.php?url=' . urlencode($raw_url) . '&filename=' . urle
   async function downloadSong() {
     const btn = document.getElementById('btnDownload');
     btn.disabled = true;
-    btn.innerHTML = DOWNLOAD_ICON + ' Loading...';
+    btn.innerHTML = DOWNLOAD_ICON + ' Cargando...';
 
     try {
       // Try the proxy first; fall back to the direct Supabase URL
@@ -386,7 +389,7 @@ $download_url = '/download.php?url=' . urlencode($raw_url) . '&filename=' . urle
       a.click();
     } finally {
       btn.disabled = false;
-      btn.innerHTML = DOWNLOAD_ICON + ' Download your song';
+      btn.innerHTML = DOWNLOAD_ICON + ' Descargar tu canción';
     }
   }
 </script>

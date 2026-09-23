@@ -5,12 +5,12 @@
 // ──────────────────────────────────────────
 
 $url      = $_GET['url']      ?? '';
-$filename = $_GET['filename'] ?? 'my-song.mp3';
+$filename = $_GET['filename'] ?? 'mi-cancion.mp3';
 
 // Only accept URLs from this Supabase account
 if (!$url || !preg_match('/^https:\/\/baltzukuszagxcgkfrpi\.supabase\.co\/storage\//', $url)) {
     http_response_code(400);
-    exit('Invalid URL');
+    exit('URL inválida');
 }
 
 // Sanitize the file name
@@ -33,7 +33,7 @@ curl_close($ch);
 
 if ($data === false || $httpCode !== 200) {
     http_response_code(502);
-    exit('Failed to fetch file');
+    exit('No se pudo obtener el archivo');
 }
 
 header('Content-Type: audio/mpeg');
