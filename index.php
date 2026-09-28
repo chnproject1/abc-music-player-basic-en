@@ -50,15 +50,15 @@ $download_url = '/download.php?url=' . urlencode($raw_url) . '&filename=' . urle
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <meta property="og:title"       content="Tu canción especial 🎵">
   <meta property="og:description" content="Una canción hecha solo para ti por abcMusic.">
-  <meta name="theme-color"        content="#0d1a12">
+  <meta name="theme-color"        content="#f6f8ee">
   <title>Tu canción — abcMusic</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       min-height: 100dvh;
-      background: #0d1a12;
-      color: #f0faf4;
+      background: #f6f8ee;   /* tema claro (2026-09-28), mesma paleta de fotos-es/video-es */
+      color: #24301d;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       display: flex;
       flex-direction: column;
@@ -81,7 +81,7 @@ $download_url = '/download.php?url=' . urlencode($raw_url) . '&filename=' . urle
       font-size: 13px;
       font-weight: 600;
       letter-spacing: 0.12em;
-      color: #34d399;
+      color: #3f7d20;
       text-transform: uppercase;
       text-decoration: none;
       margin-bottom: 8px;
@@ -92,22 +92,22 @@ $download_url = '/download.php?url=' . urlencode($raw_url) . '&filename=' . urle
       width: 72px;
       height: 72px;
       border-radius: 50%;
-      background: rgba(52, 211, 153, 0.1);
-      border: 1px solid rgba(52, 211, 153, 0.25);
+      background: #e7f1d6;
+      border: 1px solid #b9d69c;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 4px;
     }
     .music-icon svg {
-      fill: #34d399;
+      fill: #3f7d20;
     }
     .music-icon.playing {
       animation: pulse 1.8s ease-in-out infinite;
     }
     @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(52,211,153,0.25); }
-      50%       { box-shadow: 0 0 0 14px rgba(52,211,153,0); }
+      0%, 100% { box-shadow: 0 0 0 0 rgba(63,125,32,0.25); }
+      50%       { box-shadow: 0 0 0 14px rgba(63,125,32,0); }
     }
 
     /* ── Wave bars (only visible while playing) ── */
@@ -122,7 +122,7 @@ $download_url = '/download.php?url=' . urlencode($raw_url) . '&filename=' . urle
     .wave span {
       width: 3px;
       border-radius: 2px;
-      background: #34d399;
+      background: #3f7d20;
       animation: wave var(--d) ease-in-out infinite alternate;
     }
     @keyframes wave { from { height: 3px; } to { height: var(--h); } }
@@ -130,8 +130,8 @@ $download_url = '/download.php?url=' . urlencode($raw_url) . '&filename=' . urle
     /* ── Player ── */
     .player {
       width: 100%;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(52,211,153,0.15);
+      background: #ffffff;
+      border: 1px solid #dfe6d2;
       border-radius: 20px;
       padding: 24px 20px 20px;
     }
@@ -143,7 +143,7 @@ $download_url = '/download.php?url=' . urlencode($raw_url) . '&filename=' . urle
     .progress-bar {
       width: 100%;
       height: 4px;
-      background: rgba(255,255,255,0.1);
+      background: #dfe6d2;
       border-radius: 2px;
       overflow: hidden;
       margin-bottom: 8px;
@@ -151,7 +151,7 @@ $download_url = '/download.php?url=' . urlencode($raw_url) . '&filename=' . urle
     .progress-fill {
       height: 100%;
       width: 0%;
-      background: #34d399;
+      background: #3f7d20;
       border-radius: 2px;
       transition: width 0.3s linear;
     }
@@ -159,7 +159,7 @@ $download_url = '/download.php?url=' . urlencode($raw_url) . '&filename=' . urle
       display: flex;
       justify-content: space-between;
       font-size: 11px;
-      color: rgba(255,255,255,0.35);
+      color: #74806a;
       font-variant-numeric: tabular-nums;
     }
 
@@ -174,18 +174,18 @@ $download_url = '/download.php?url=' . urlencode($raw_url) . '&filename=' . urle
       border: none;
       cursor: pointer;
       padding: 8px;
-      color: rgba(255,255,255,0.4);
+      color: #74806a;
       transition: color 0.15s;
       display: flex;
       align-items: center;
     }
-    .btn-skip:hover { color: #34d399; }
+    .btn-skip:hover { color: #3f7d20; }
 
     .btn-play {
       width: 64px;
       height: 64px;
       border-radius: 50%;
-      background: #34d399;
+      background: #3f7d20;
       border: none;
       cursor: pointer;
       display: flex;
@@ -194,9 +194,9 @@ $download_url = '/download.php?url=' . urlencode($raw_url) . '&filename=' . urle
       transition: transform 0.1s, background 0.15s;
       flex-shrink: 0;
     }
-    .btn-play:hover  { background: #2ebd87; }
+    .btn-play:hover  { background: #2d5e14; }
     .btn-play:active { transform: scale(0.95); }
-    .btn-play svg    { fill: #0d1a12; }
+    .btn-play svg    { fill: #ffffff; }
 
     /* ── Download button ── */
     .btn-download {
@@ -206,16 +206,16 @@ $download_url = '/download.php?url=' . urlencode($raw_url) . '&filename=' . urle
       justify-content: center;
       gap: 10px;
       padding: 14px 20px;
-      background: #34d399;
+      background: #3f7d20;
       border: none;
       border-radius: 14px;
-      color: #0d1a12;
+      color: #ffffff;
       font-size: 15px;
       font-weight: 600;
       cursor: pointer;
       transition: background 0.15s, transform 0.1s;
     }
-    .btn-download:hover  { background: #2ebd87; }
+    .btn-download:hover  { background: #2d5e14; }
     .btn-download:active { transform: scale(0.98); }
     .btn-download:disabled { opacity: 0.6; cursor: default; }
 
@@ -223,17 +223,17 @@ $download_url = '/download.php?url=' . urlencode($raw_url) . '&filename=' . urle
     footer {
       font-size: 15px;
       line-height: 1.5;
-      color: rgba(255,255,255,0.45);
+      color: #74806a;
       text-align: center;
       margin-top: 12px;
     }
     footer a {
-      color: #34d399;
+      color: #3f7d20;
       font-weight: 600;
       text-decoration: none;
       transition: color 0.15s;
     }
-    footer a:hover { color: #6ee7b7; text-decoration: underline; }
+    footer a:hover { color: #2d5e14; text-decoration: underline; }
 
     audio { display: none; }
   </style>
